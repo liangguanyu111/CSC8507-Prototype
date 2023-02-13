@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -33,6 +35,11 @@ public class GameManager : MonoBehaviour
         Player.transform.position = new Vector3(0, 3, -20);
         Player.gameObject.GetComponent<CharacterController>().enabled = true;
         Debug.Log(Player.transform.position);
+    }
+
+    public void NextScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }
 

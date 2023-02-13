@@ -19,14 +19,32 @@ public class PlayerInput : MonoBehaviour
 	public ParticleSystem SplashParticle;
 	public ParticleSystem SubEmitter;
 	public ParticlesController particleController;
-	void Update()
+
+	private Animator an;
+
+    private void Start()
+    {
+		an = this.GetComponentInChildren<Animator>();
+    }
+    void Update()
 	{
 		if (physicalCC.isGround)
 		{
+			Vector2 input = new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+
 			physicalCC.moveInput = Vector3.ClampMagnitude(transform.forward
-							* Input.GetAxis("Vertical")
+							* input.x
 							+ transform.right
-							* Input.GetAxis("Horizontal"), 1f) * speed;
+							* input.y, 1f) * speed;
+
+			if(input!=Vector2.zero)
+            {
+				an.SetBool("Move", true);
+            }else
+            {
+				an.SetBool("Move", false);
+			}
+
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
