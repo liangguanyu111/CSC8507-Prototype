@@ -18,6 +18,8 @@ public class CameraControllerTPS : MonoBehaviour
 
         transform.eulerAngles = new Vector3(pitch, yaw, 0);
 
-        transform.position = playerTransform.position - transform.forward * 6; //6->distance
+        transform.position = playerTransform.position - transform.forward * 3; //3->distance
+        transform.position = transform.position - transform.right;
+        transform.position = transform.position + transform.up;
     }
 }
